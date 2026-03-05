@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "zelos-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "/Users/takuyawatanabe/Takuya (Claude Code)/zelos-website", "-l", "3456"],
+      "port": 3456
+    }
+  ]
+}

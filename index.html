@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZELOS | Sports Management</title>
+  <meta name="description" content="ZELOS - スポーツマネジメント。選手の可能性を最大限に引き出し、世界への扉を開く。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       CSS Variables & Reset
+    ======================================== */
+    :root {
+      --primary: #0a1628;
+      --primary-light: #0d1e35;
+      --primary-mid: #111d33;
+      --accent: #c8a94e;
+      --accent-hover: #dbbe5e;
+      --text: #f0f0f0;
+      --text-muted: #a0a8b8;
+      --card-bg: #111d33;
+      --card-border: #1e2d47;
+      --font-main: 'Inter', 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+      --font-jp: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      --max-width: 1000px;
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--primary);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ========================================
+       Scroll Progress Bar
+    ======================================== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent);
+      z-index: 10001;
+      transition: width 0.05s linear;
+    }
+
+    /* ========================================
+       Navigation
+    ======================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10000;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 169, 78, 0.15);
+      transform: translateY(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .navbar.visible {
+      transform: translateY(0);
+    }
+
+    .navbar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .navbar-brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--text);
+    }
+
+    .navbar-brand .accent {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.3rem 0;
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Mobile Menu */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+
+    .nav-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ========================================
+       Hero Section
+    ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a1628 0%, #0f2240 25%, #162d50 50%, #0f2240 75%, #0a1628 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 12s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1.4rem;
+      border: 1px solid rgba(200, 169, 78, 0.4);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards 0.3s;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: 12px;
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards 0.5s;
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards 0.7s;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.9;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards 0.9s;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: all var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards 1.1s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-hover);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200, 169, 78, 0.3);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards 1.3s;
+    }
+
+    .scroll-indicator span {
+      display: block;
+      width: 1.5px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      margin: 0 auto;
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========================================
+       Wave Divider
+    ======================================== */
+    .wave-divider {
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave-divider svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wave-divider.flip {
+      transform: rotate(180deg);
+    }
+
+    /* ========================================
+       Section Common
+    ======================================== */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-dark {
+      background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+    }
+
+    .section-darker {
+      background: linear-gradient(180deg, var(--primary-light) 0%, var(--primary) 100%);
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-line {
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      margin: 0 auto 1rem;
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+    }
+
+    .section-line.animated {
+      transform: scaleX(1);
+    }
+
+    .section-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ========================================
+       Fade-in Animation
+    ======================================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .stagger-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       About Section
+    ======================================== */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .value-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .value-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(200, 169, 78, 0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .value-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .value-card h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+    }
+
+    .value-card p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ========================================
+       Profile Section
+    ======================================== */
+    .profile-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      align-items: start;
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--primary-light), var(--card-border));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .profile-photo-placeholder {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .profile-info h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.2rem;
+    }
+
+    .profile-info .name-en {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-info .title {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-bio {
+      font-size: 0.92rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    .profile-detail-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .profile-detail-item .detail-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(200, 169, 78, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .profile-detail-item .detail-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .profile-career {
+      margin-top: 2rem;
+    }
+
+    .profile-career h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .career-timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--card-border);
+    }
+
+    .career-item {
+      position: relative;
+      padding-bottom: 1.2rem;
+      padding-left: 1rem;
+    }
+
+    .career-item::before {
+      content: '';
+      position: absolute;
+      left: -1.85rem;
+      top: 0.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .career-item .career-year {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .career-item .career-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ========================================
+       Services Section
+    ======================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(200, 169, 78, 0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(200, 169, 78, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       Events Section
+    ======================================== */
+    .events-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      transition: all var(--transition);
+    }
+
+    .event-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(200, 169, 78, 0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .event-date-block {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(200, 169, 78, 0.08);
+      border-radius: 10px;
+      border: 1px solid rgba(200, 169, 78, 0.2);
+    }
+
+    .event-date-block .month {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .event-date-block .day {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .event-date-block .year {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .event-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .event-meta span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .event-meta svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .event-status {
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .event-status.upcoming {
+      background: rgba(200, 169, 78, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(200, 169, 78, 0.3);
+    }
+
+    .event-status.open {
+      background: rgba(78, 200, 120, 0.15);
+      color: #4ec878;
+      border: 1px solid rgba(78, 200, 120, 0.3);
+    }
+
+    .event-status.closed {
+      background: rgba(160, 168, 184, 0.1);
+      color: var(--text-muted);
+      border: 1px solid rgba(160, 168, 184, 0.2);
+    }
+
+    .events-cta {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    .events-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* ========================================
+       Contact Section
+    ======================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+    }
+
+    .contact-info h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .contact-item .icon-box {
+      width: 40px;
+      height: 40px;
+      background: rgba(200, 169, 78, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item .icon-box svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-item span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .form-group label .required {
+      color: var(--accent);
+      margin-left: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(10, 22, 40, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-main);
+      font-size: 0.88rem;
+      transition: border-color var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a0a8b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200, 169, 78, 0.3);
+    }
+
+    /* ========================================
+       Footer
+    ======================================== */
+    .footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .footer-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 6px;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-brand .accent {
+      color: var(--accent);
+    }
+
+    .footer-tagline {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ========================================
+       Back to Top
+    ======================================== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: all var(--transition);
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    /* ========================================
+       Responsive
+    ======================================== */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 22, 40, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--card-border);
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .profile-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+
+      .profile-photo {
+        max-width: 200px;
+        margin: 0 auto;
+      }
+
+      .profile-details {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .event-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      .event-date-block {
+        max-width: 120px;
+        margin: 0 auto;
+      }
+
+      .event-meta {
+        justify-content: center;
+      }
+
+      .event-status {
+        justify-self: center;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form {
+        padding: 1.5rem;
+      }
+
+      .section {
+        padding: 3.5rem 1.2rem;
+      }
+
+      .wave-divider {
+        height: 35px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        letter-spacing: 6px;
+      }
+
+      .about-values {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========================================
+       Page Loader
+    ======================================== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      background: var(--primary);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--card-border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-brand">ZEL<span class="accent">O</span>S</div>
+      <button class="nav-toggle" id="navToggle" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas class="hero-particles" id="particles"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">Sports Management</div>
+      <h1 class="hero-title">ZEL<span class="accent">O</span>S</h1>
+      <p class="hero-subtitle">Sports Management</p>
+      <p class="hero-tagline">選手の可能性を最大限に引き出し、<br>世界への扉を開く。</p>
+      <a href="#about" class="hero-cta">Learn More</a>
+    </div>
+    <div class="scroll-indicator"><span></span></div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,25 1440,30 L1440,60 L0,60Z" fill="#0a1628" opacity="0.5"/>
+      <path d="M0,35 C360,55 720,10 1080,35 C1260,48 1380,28 1440,35 L1440,60 L0,60Z" fill="#0a1628"/>
+    </svg>
+  </div>
+
+  <!-- About Section -->
+  <section class="section section-dark" id="about">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">ZELOSについて</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">スポーツを通じて人と世界をつなぎ、新しい価値を創造する。</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text fade-in">
+          <p>
+            <span class="highlight">ZELOS</span>はギリシャ語で「熱意・情熱」を意味する言葉。
+            私たちはその名の通り、スポーツに対する情熱を原動力に活動しています。
+          </p>
+          <p>
+            選手一人ひとりの夢と向き合い、キャリア設計から国際的な舞台への挑戦まで、
+            トータルにサポート。スポーツの力で人々の可能性を広げ、社会に新たな価値を届けます。
+          </p>
+          <p>
+            日本と世界をつなぐ架け橋として、選手・クラブ・スポンサーの三者がともに成長できる
+            エコシステムの構築を目指しています。
+          </p>
+        </div>
+        <div class="about-values fade-in">
+          <div class="value-card stagger-item">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h4>Global</h4>
+            <p>世界を舞台にした<br>ネットワーク</p>
+          </div>
+          <div class="value-card stagger-item">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4>Trust</h4>
+            <p>選手との<br>信頼関係</p>
+          </div>
+          <div class="value-card stagger-item">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4>Growth</h4>
+            <p>継続的な<br>成長支援</p>
+          </div>
+          <div class="value-card stagger-item">
+            <div class="value-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4>Passion</h4>
+            <p>情熱を持った<br>マネジメント</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider flip">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,25 1440,30 L1440,60 L0,60Z" fill="#0d1e35" opacity="0.5"/>
+      <path d="M0,35 C360,55 720,10 1080,35 C1260,48 1380,28 1440,35 L1440,60 L0,60Z" fill="#0d1e35"/>
+    </svg>
+  </div>
+
+  <!-- Profile Section -->
+  <section class="section section-darker" id="profile">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Representative</span>
+        <h2 class="section-title">代表プロフィール</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="profile-card fade-in">
+        <div class="profile-photo">
+          <div class="profile-photo-placeholder">PHOTO</div>
+        </div>
+        <div class="profile-info">
+          <h3>渡邉 卓矢</h3>
+          <p class="name-en">Takuya Watanabe</p>
+          <span class="title">CEO / Founder</span>
+          <p class="profile-bio">
+            スポーツ業界で培った経験とグローバルなネットワークを活かし、
+            選手のキャリアを多角的にサポート。国内外のクラブや関係者との強いパイプを持ち、
+            選手一人ひとりに寄り添ったマネジメントを実践しています。
+          </p>
+          <div class="profile-career">
+            <h4>Career</h4>
+            <div class="career-timeline">
+              <div class="career-item">
+                <span class="career-year">2026</span>
+                <span class="career-desc">ZELOS設立 / 代表取締役就任</span>
+              </div>
+              <div class="career-item">
+                <span class="career-year">-</span>
+                <span class="career-desc">サッカー国際トライアウト事業開始</span>
+              </div>
+              <div class="career-item">
+                <span class="career-year">-</span>
+                <span class="career-desc">海外クラブとの提携・選手マネジメント</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,25 1440,30 L1440,60 L0,60Z" fill="#0d1e35" opacity="0.5"/>
+      <path d="M0,35 C360,55 720,10 1080,35 C1260,48 1380,28 1440,35 L1440,60 L0,60Z" fill="#0a1628"/>
+    </svg>
+  </div>
+
+  <!-- Services Section -->
+  <section class="section section-dark" id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Services</span>
+        <h2 class="section-title">事業内容</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">スポーツに関わるすべての人に、最適なソリューションを提供します。</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card stagger-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          </div>
+          <h3>選手マネジメント</h3>
+          <p>選手のキャリア設計から契約交渉、日常のサポートまで。一人ひとりに合わせた最適なプランを提供します。</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>海外挑戦サポート</h3>
+          <p>海外クラブとのネットワークを活かし、トライアウトの機会創出や移籍交渉を支援します。</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>スポンサーシップ</h3>
+          <p>選手とスポンサー企業のマッチングを行い、双方にとって価値あるパートナーシップを構築します。</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 10.33 9.33 11 8.5 11h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+          </div>
+          <h3>イベント企画・運営</h3>
+          <p>トライアウトやスポーツキャンプなど、選手の成長につながるイベントを企画・運営します。</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>キャリア教育</h3>
+          <p>セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。</p>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <h3>コンサルティング</h3>
+          <p>クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider flip">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,25 1440,30 L1440,60 L0,60Z" fill="#0a1628" opacity="0.5"/>
+      <path d="M0,35 C360,55 720,10 1080,35 C1260,48 1380,28 1440,35 L1440,60 L0,60Z" fill="#0d1e35"/>
+    </svg>
+  </div>
+
+  <!-- Events Section -->
+  <section class="section section-darker" id="events">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Events</span>
+        <h2 class="section-title">イベント情報</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">ZELOSが主催・運営するイベントをご紹介します。</p>
+      </div>
+      <div class="events-list">
+        <div class="event-card stagger-item">
+          <div class="event-date-block">
+            <span class="month">Aug</span>
+            <span class="day">16-17</span>
+            <span class="year">2026</span>
+          </div>
+          <div class="event-info">
+            <h3>国際サッカートライアウト 2026</h3>
+            <p>海外プロクラブのスカウトが直接選手を評価する、国際トライアウトイベント。</p>
+            <div class="event-meta">
+              <span>
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                千葉県
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                15歳〜28歳
+              </span>
+            </div>
+          </div>
+          <span class="event-status open">募集中</span>
+        </div>
+
+        <div class="event-card stagger-item">
+          <div class="event-date-block">
+            <span class="month">TBD</span>
+            <span class="day">--</span>
+            <span class="year">2026</span>
+          </div>
+          <div class="event-info">
+            <h3>スポーツキャリアセミナー</h3>
+            <p>現役・元プロ選手を招いたキャリアデザインセミナー。選手としての将来を考える機会を提供します。</p>
+            <div class="event-meta">
+              <span>
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                場所未定
+              </span>
+            </div>
+          </div>
+          <span class="event-status upcoming">準備中</span>
+        </div>
+      </div>
+      <p class="events-note fade-in">新しいイベント情報は随時更新します。お問い合わせもお気軽にどうぞ。</p>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,25 1440,30 L1440,60 L0,60Z" fill="#0d1e35" opacity="0.5"/>
+      <path d="M0,35 C360,55 720,10 1080,35 C1260,48 1380,28 1440,35 L1440,60 L0,60Z" fill="#0a1628"/>
+    </svg>
+  </div>
+
+  <!-- Contact Section -->
+  <section class="section section-dark" id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">お問い合わせ</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">ご質問やご相談がございましたら、お気軽にお問い合わせください。</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <h3>まずはお気軽にご連絡ください</h3>
+          <p>
+            選手マネジメント、イベントへの参加、スポンサーシップなど、
+            スポーツに関するあらゆるご相談に対応いたします。
+            お気軽にメッセージをお送りください。
+          </p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <span>zelos.sm@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <span>日本</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form fade-in" action="https://formsubmit.co/zelos.sm@gmail.com" method="POST">
+          <!-- FormSubmit Config -->
+          <input type="hidden" name="_subject" value="【ZELOS】WEBサイトからのお問い合わせ">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
+          <input type="hidden" name="_next" value="https://zelos2026.github.io/zelos-website/thanks.html">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>お名前<span class="required">*</span></label>
+              <input type="text" name="name" required placeholder="山田 太郎">
+            </div>
+            <div class="form-group">
+              <label>メールアドレス<span class="required">*</span></label>
+              <input type="email" name="email" required placeholder="example@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ種別</label>
+            <select name="category">
+              <option value="">選択してください</option>
+              <option value="選手マネジメント">選手マネジメントについて</option>
+              <option value="イベント">イベントについて</option>
+              <option value="スポンサーシップ">スポンサーシップについて</option>
+              <option value="取材・メディア">取材・メディア関連</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ内容<span class="required">*</span></label>
+            <textarea name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">ZEL<span class="accent">O</span>S</div>
+    <p class="footer-tagline">Sports Management</p>
+    <p class="footer-copy">&copy; 2026 ZELOS. All rights reserved.</p>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="トップへ戻る">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    // ========================================
+    // Page Loader
+    // ========================================
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('pageLoader').classList.add('hidden');
+      }, 400);
+    });
+
+    // ========================================
+    // Particle Background
+    // ========================================
+    (function() {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const PARTICLE_COUNT = 30;
+
+      function resize() {
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+      }
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.3 + 0.1
+        };
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(200, 169, 78, ${p.opacity})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      init();
+      animate();
+      window.addEventListener('resize', resize);
+    })();
+
+    // ========================================
+    // Navbar Scroll Behavior
+    // ========================================
+    const navbar = document.getElementById('navbar');
+    const hero = document.getElementById('hero');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('.section');
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+      const heroH = hero.offsetHeight;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+
+      // Navbar visibility
+      if (scrollY > heroH * 0.5) {
+        navbar.classList.add('visible');
+      } else {
+        navbar.classList.remove('visible');
+      }
+
+      // Progress bar
+      scrollProgress.style.width = (scrollY / docH * 100) + '%';
+
+      // Active nav link
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 100;
+        if (scrollY >= top) current = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+
+      // Back to top
+      const btn = document.getElementById('backToTop');
+      if (scrollY > 600) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Back to top
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinksEl = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navLinksEl.classList.toggle('open');
+    });
+
+    navLinksEl.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navLinksEl.classList.remove('open');
+      });
+    });
+
+    // ========================================
+    // Scroll Animations
+    // ========================================
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const staggerEls = document.querySelectorAll('.stagger-item');
+    const sectionLines = document.querySelectorAll('.section-line');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.classList.contains('fade-in')) {
+            // Animate section lines within this section
+            const line = entry.target.querySelector('.section-line');
+            if (line) setTimeout(() => line.classList.add('animated'), 200);
+          }
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Stagger animation
+    const staggerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const parent = entry.target.parentElement;
+          const items = parent.querySelectorAll('.stagger-item');
+          items.forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), i * 100);
+          });
+          staggerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe first stagger item in each group
+    const staggerGroups = new Set();
+    staggerEls.forEach(el => {
+      const parent = el.parentElement;
+      if (!staggerGroups.has(parent)) {
+        staggerGroups.add(parent);
+        staggerObserver.observe(el);
+      }
+    });
+
+    // Section lines
+    const lineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('animated'), 300);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sectionLines.forEach(line => lineObserver.observe(line));
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>送信完了 | ZELOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0a1628;
+      --accent: #c8a94e;
+      --accent-hover: #dbbe5e;
+      --text: #f0f0f0;
+      --text-muted: #a0a8b8;
+      --card-bg: #111d33;
+      --card-border: #1e2d47;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #0f2240 25%, #162d50 50%, #0f2240 75%, #0a1628 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .thanks-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .thanks-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem;
+      background: rgba(200, 169, 78, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thanks-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .thanks-brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .thanks-brand .accent { color: var(--accent); }
+
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200, 169, 78, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="thanks-card">
+    <div class="thanks-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="thanks-brand">ZEL<span class="accent">O</span>S</div>
+    <h1>お問い合わせありがとうございます</h1>
+    <p>メッセージを受け付けました。<br>内容を確認の上、折り返しご連絡いたします。</p>
+    <a href="index.html" class="back-link">トップページに戻る</a>
+  </div>
+</body>
+</html>
