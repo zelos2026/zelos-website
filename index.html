@@ -837,6 +837,26 @@
       margin-top: 2.5rem;
     }
 
+    a.event-card {
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      transition: all var(--transition);
+    }
+
+    a.event-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(200, 169, 78, 0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
     .events-note {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -1115,7 +1135,8 @@
         grid-template-columns: 1fr;
       }
 
-      .event-card {
+      .event-card,
+      a.event-card {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 1rem;
@@ -1438,15 +1459,15 @@
         <p class="section-desc">ZELOSが主催・運営するイベントをご紹介します。</p>
       </div>
       <div class="events-list">
-        <div class="event-card stagger-item">
+        <a href="https://zelos2026.github.io/soccer-tryout-2026/" target="_blank" rel="noopener" class="event-card stagger-item">
           <div class="event-date-block">
-            <span class="month">Aug</span>
-            <span class="day">16-17</span>
+            <span class="month">Apr</span>
+            <span class="day">3</span>
             <span class="year">2026</span>
           </div>
           <div class="event-info">
-            <h3>国際サッカートライアウト 2026</h3>
-            <p>海外プロクラブのスカウトが直接選手を評価する、国際トライアウトイベント。</p>
+            <h3>海外サッカートライアウト 2026</h3>
+            <p>海外プロクラブのスカウトが直接選手を評価する、国際トライアウトイベント。詳細はこちら。</p>
             <div class="event-meta">
               <span>
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1459,7 +1480,7 @@
             </div>
           </div>
           <span class="event-status open">募集中</span>
-        </div>
+        </a>
 
         <div class="event-card stagger-item">
           <div class="event-date-block">
