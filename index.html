@@ -821,20 +821,25 @@
     }
 
     .event-status.open {
-      background: rgba(200, 169, 78, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(200, 169, 78, 0.4);
-      animation: glowPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 0 6px rgba(200, 169, 78, 0.3); }
-      50% { box-shadow: 0 0 16px rgba(200, 169, 78, 0.6); }
+      background: rgba(78, 200, 120, 0.15);
+      color: #4ec878;
+      border: 1px solid rgba(78, 200, 120, 0.3);
     }
 
     a.event-card:has(.event-status.open) {
-      border-color: rgba(200, 169, 78, 0.25);
-      box-shadow: 0 0 20px rgba(200, 169, 78, 0.08);
+      border-color: rgba(200, 169, 78, 0.4);
+      animation: cardGlow 2.5s ease-in-out infinite;
+    }
+
+    @keyframes cardGlow {
+      0%, 100% {
+        border-color: rgba(200, 169, 78, 0.25);
+        box-shadow: 0 0 8px rgba(200, 169, 78, 0.1), inset 0 0 8px rgba(200, 169, 78, 0.03);
+      }
+      50% {
+        border-color: rgba(200, 169, 78, 0.5);
+        box-shadow: 0 0 20px rgba(200, 169, 78, 0.2), inset 0 0 12px rgba(200, 169, 78, 0.05);
+      }
     }
 
     .event-status.closed {
