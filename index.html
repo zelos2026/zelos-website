@@ -16,7 +16,7 @@
   <meta name="twitter:title" content="ZELOS | Sports Management">
   <meta name="twitter:description" content="選手の可能性を最大限に引き出し、世界への扉を開く。">
   <!-- Favicon -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -1217,48 +1217,6 @@
     }
 
     /* ========================================
-       Stats Section
-    ======================================== */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-    }
-
-    .stat-number {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 800;
-      color: var(--accent);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.2;
-    }
-
-    .stat-number .stat-suffix {
-      font-size: 0.5em;
-      font-weight: 600;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.3rem;
-      letter-spacing: 0.5px;
-    }
-
-    @media (max-width: 768px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ========================================
        Service CTA
     ======================================== */
     .service-cta {
@@ -1545,24 +1503,6 @@
         <tr><th>事業内容</th><td>スポーツマネジメント / イベント企画・運営 / コンサルティング</td></tr>
         <tr><th>Email</th><td>zelos.sm@gmail.com</td></tr>
       </table>
-      <div class="stats-grid fade-in">
-        <div class="stat-item stagger-item">
-          <div class="stat-number" data-target="5">0<span class="stat-suffix">+</span></div>
-          <div class="stat-label">提携クラブ</div>
-        </div>
-        <div class="stat-item stagger-item">
-          <div class="stat-number" data-target="3">0<span class="stat-suffix">ヶ国</span></div>
-          <div class="stat-label">活動拠点</div>
-        </div>
-        <div class="stat-item stagger-item">
-          <div class="stat-number" data-target="10">0<span class="stat-suffix">+</span></div>
-          <div class="stat-label">サポート選手</div>
-        </div>
-        <div class="stat-item stagger-item">
-          <div class="stat-number" data-target="2">0<span class="stat-suffix">回</span></div>
-          <div class="stat-label">イベント開催</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -2084,40 +2024,6 @@
 
     sectionLines.forEach(line => lineObserver.observe(line));
 
-    // ========================================
-    // Stats Counter Animation
-    // ========================================
-    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.target);
-          const suffix = el.querySelector('.stat-suffix');
-          const suffixText = suffix ? suffix.textContent : '';
-          let current = 0;
-          const duration = 1500;
-          const step = target / (duration / 30);
-          const counter = setInterval(() => {
-            current += step;
-            if (current >= target) {
-              current = target;
-              clearInterval(counter);
-            }
-            el.textContent = Math.floor(current);
-            if (suffix) {
-              const s = document.createElement('span');
-              s.className = 'stat-suffix';
-              s.textContent = suffixText;
-              el.appendChild(s);
-            }
-          }, 30);
-          statsObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    statNumbers.forEach(el => statsObserver.observe(el));
   </script>
 </body>
 </html>
