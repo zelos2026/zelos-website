@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZELOS | Sports Management</title>
   <meta name="description" content="ZELOS - スポーツマネジメント。選手の可能性を最大限に引き出し、世界への扉を開く。">
+  <!-- OGP -->
+  <meta property="og:title" content="ZELOS | Sports Management">
+  <meta property="og:description" content="選手の可能性を最大限に引き出し、世界への扉を開く。スポーツマネジメントのZELOS。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zelos2026.github.io/zelos-website/">
+  <meta property="og:image" content="https://zelos2026.github.io/zelos-website/images/ogp.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZELOS | Sports Management">
+  <meta name="twitter:description" content="選手の可能性を最大限に引き出し、世界への扉を開く。">
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -1205,6 +1217,162 @@
     }
 
     /* ========================================
+       Stats Section
+    ======================================== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+    }
+
+    .stat-number {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.2;
+    }
+
+    .stat-number .stat-suffix {
+      font-size: 0.5em;
+      font-weight: 600;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ========================================
+       Service CTA
+    ======================================== */
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 0.8rem;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.3s ease;
+    }
+
+    .service-cta svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-cta {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .service-card:hover .service-cta svg {
+      transform: translateX(3px);
+    }
+
+    /* ========================================
+       Company Info Table
+    ======================================== */
+    .company-table {
+      width: 100%;
+      margin-top: 2.5rem;
+      border-collapse: collapse;
+    }
+
+    .company-table tr {
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .company-table th {
+      text-align: left;
+      padding: 1rem 1.2rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      width: 140px;
+      vertical-align: top;
+      letter-spacing: 0.5px;
+    }
+
+    .company-table td {
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 600px) {
+      .company-table th,
+      .company-table td {
+        display: block;
+        padding: 0.5rem 1rem;
+        width: 100%;
+      }
+      .company-table th { padding-bottom: 0; }
+      .company-table td { padding-top: 0.2rem; }
+    }
+
+    /* ========================================
+       Footer SNS
+    ======================================== */
+    .footer-sns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-sns a {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .footer-sns a:hover {
+      border-color: var(--accent);
+      background: rgba(200, 169, 78, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .footer-sns svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-muted);
+      transition: fill var(--transition);
+    }
+
+    .footer-sns a:hover svg {
+      fill: var(--accent);
+    }
+
+    /* ========================================
        Page Loader
     ======================================== */
     .page-loader {
@@ -1213,8 +1381,10 @@
       background: var(--primary);
       z-index: 99999;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 1.2rem;
       transition: opacity 0.5s ease;
     }
 
@@ -1223,24 +1393,52 @@
       pointer-events: none;
     }
 
-    .loader-spinner {
-      width: 40px;
-      height: 40px;
-      border: 2px solid var(--card-border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+    .loader-logo {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 6px;
+      opacity: 0;
+      animation: loaderFadeIn 0.6s ease forwards;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .loader-logo .accent {
+      color: var(--accent);
+    }
+
+    .loader-bar {
+      width: 60px;
+      height: 2px;
+      background: var(--card-border);
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 0;
+      animation: loaderFadeIn 0.4s ease forwards 0.3s;
+    }
+
+    .loader-bar::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      animation: loaderSlide 1s ease infinite;
+    }
+
+    @keyframes loaderFadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes loaderSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
   </style>
 </head>
 <body>
   <!-- Page Loader -->
   <div class="page-loader" id="pageLoader">
-    <div class="loader-spinner"></div>
+    <div class="loader-logo">ZEL<span class="accent">O</span>S</div>
+    <div class="loader-bar"></div>
   </div>
 
   <!-- Scroll Progress -->
@@ -1339,6 +1537,32 @@
           </div>
         </div>
       </div>
+      <table class="company-table fade-in">
+        <tr><th>会社名</th><td>株式会社ZELOS</td></tr>
+        <tr><th>設立</th><td>2026年</td></tr>
+        <tr><th>代表者</th><td>渡邉 卓矢</td></tr>
+        <tr><th>所在地</th><td>東京都千代田区永田町2-17-3</td></tr>
+        <tr><th>事業内容</th><td>スポーツマネジメント / イベント企画・運営 / コンサルティング</td></tr>
+        <tr><th>Email</th><td>zelos.sm@gmail.com</td></tr>
+      </table>
+      <div class="stats-grid fade-in">
+        <div class="stat-item stagger-item">
+          <div class="stat-number" data-target="5">0<span class="stat-suffix">+</span></div>
+          <div class="stat-label">提携クラブ</div>
+        </div>
+        <div class="stat-item stagger-item">
+          <div class="stat-number" data-target="3">0<span class="stat-suffix">ヶ国</span></div>
+          <div class="stat-label">活動拠点</div>
+        </div>
+        <div class="stat-item stagger-item">
+          <div class="stat-number" data-target="10">0<span class="stat-suffix">+</span></div>
+          <div class="stat-label">サポート選手</div>
+        </div>
+        <div class="stat-item stagger-item">
+          <div class="stat-number" data-target="2">0<span class="stat-suffix">回</span></div>
+          <div class="stat-label">イベント開催</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1371,20 +1595,42 @@
             選手のキャリアを多角的にサポート。国内外のクラブや関係者との強いパイプを持ち、
             選手一人ひとりに寄り添ったマネジメントを実践しています。
           </p>
+          <div class="profile-details">
+            <div class="profile-detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <span>東京都</span>
+            </div>
+            <div class="profile-detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <span>日本 / ラオス / タイ</span>
+            </div>
+          </div>
           <div class="profile-career">
             <h4>Career</h4>
             <div class="career-timeline">
               <div class="career-item">
                 <span class="career-year">2026</span>
-                <span class="career-desc">ZELOS設立 / 代表取締役就任</span>
+                <span class="career-desc">株式会社ZELOS設立 / 代表取締役就任</span>
+              </div>
+              <div class="career-item">
+                <span class="career-year">2026</span>
+                <span class="career-desc">海外サッカートライアウト事業開始</span>
+              </div>
+              <div class="career-item">
+                <span class="career-year">2025</span>
+                <span class="career-desc">ラオスでのサッカー指導・普及活動</span>
               </div>
               <div class="career-item">
                 <span class="career-year">-</span>
-                <span class="career-desc">サッカー国際トライアウト事業開始</span>
+                <span class="career-desc">東南アジアクラブとのネットワーク構築</span>
               </div>
               <div class="career-item">
                 <span class="career-year">-</span>
-                <span class="career-desc">海外クラブとの提携・選手マネジメント</span>
+                <span class="career-desc">選手マネジメント・移籍交渉サポート開始</span>
               </div>
             </div>
           </div>
@@ -1417,6 +1663,7 @@
           </div>
           <h3>選手マネジメント</h3>
           <p>選手のキャリア設計から契約交渉、日常のサポートまで。一人ひとりに合わせた最適なプランを提供します。</p>
+          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1424,6 +1671,7 @@
           </div>
           <h3>海外挑戦サポート</h3>
           <p>海外クラブとのネットワークを活かし、トライアウトの機会創出や移籍交渉を支援します。</p>
+          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1431,6 +1679,7 @@
           </div>
           <h3>スポンサーシップ</h3>
           <p>選手とスポンサー企業のマッチングを行い、双方にとって価値あるパートナーシップを構築します。</p>
+          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1438,6 +1687,7 @@
           </div>
           <h3>イベント企画・運営</h3>
           <p>トライアウトやスポーツキャンプなど、選手の成長につながるイベントを企画・運営します。</p>
+          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1445,6 +1695,7 @@
           </div>
           <h3>キャリア教育</h3>
           <p>セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。</p>
+          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1452,6 +1703,7 @@
           </div>
           <h3>コンサルティング</h3>
           <p>クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。</p>
+          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
       </div>
     </div>
@@ -1529,8 +1781,30 @@
     </svg>
   </div>
 
+  <!-- Achievements Section -->
+  <section class="section section-dark" id="achievements" style="padding-bottom: 2rem;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Achievements</span>
+        <h2 class="section-title">活動実績</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="service-card stagger-item" style="border-left: 3px solid var(--accent);">
+          <h3 style="font-size: 0.95rem;">海外サッカートライアウト開催</h3>
+          <p>東南アジアのプロクラブスカウトを招聘し、国内選手の海外挑戦を直接サポートするトライアウトを企画・実施。</p>
+        </div>
+        <div class="service-card stagger-item" style="border-left: 3px solid var(--accent);">
+          <h3 style="font-size: 0.95rem;">ラオスでのサッカー普及活動</h3>
+          <p>ラオス現地でのサッカー指導を通じて、東南アジアのスポーツ発展に貢献。現地クラブとの関係構築を実現。</p>
+        </div>
+      </div>
+      <p class="events-note fade-in" style="margin-top: 2rem;">活動実績は随時更新していきます。</p>
+    </div>
+  </section>
+
   <!-- Contact Section -->
-  <section class="section section-dark" id="contact">
+  <section class="section section-dark" id="contact" style="padding-top: 3rem;">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Contact</span>
@@ -1580,6 +1854,10 @@
             </div>
           </div>
           <div class="form-group">
+            <label>電話番号</label>
+            <input type="tel" name="phone" placeholder="090-1234-5678">
+          </div>
+          <div class="form-group">
             <label>お問い合わせ種別</label>
             <select name="category">
               <option value="">選択してください</option>
@@ -1604,6 +1882,14 @@
   <footer class="footer">
     <div class="footer-brand">ZEL<span class="accent">O</span>S</div>
     <p class="footer-tagline">Sports Management</p>
+    <div class="footer-sns">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X">
+        <svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"/></svg>
+      </a>
+    </div>
     <p class="footer-copy">&copy; 2026 ZELOS. All rights reserved.</p>
   </footer>
 
@@ -1797,6 +2083,41 @@
     }, { threshold: 0.5 });
 
     sectionLines.forEach(line => lineObserver.observe(line));
+
+    // ========================================
+    // Stats Counter Animation
+    // ========================================
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const suffix = el.querySelector('.stat-suffix');
+          const suffixText = suffix ? suffix.textContent : '';
+          let current = 0;
+          const duration = 1500;
+          const step = target / (duration / 30);
+          const counter = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(counter);
+            }
+            el.textContent = Math.floor(current);
+            if (suffix) {
+              const s = document.createElement('span');
+              s.className = 'stat-suffix';
+              s.textContent = suffixText;
+              el.appendChild(s);
+            }
+          }, 30);
+          statsObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => statsObserver.observe(el));
   </script>
 </body>
 </html>
