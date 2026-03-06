@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #0a1628 0%, #0f2240 40%, #162d50 60%, #0a1628 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      color: #f0f0f0;
+      overflow: hidden;
+      position: relative;
+    }
+    .border-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: #c8a94e;
+    }
+    .logo {
+      font-size: 5rem;
+      font-weight: 800;
+      letter-spacing: 16px;
+      margin-bottom: 0.5rem;
+    }
+    .logo .accent { color: #c8a94e; }
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: #a0a8b8;
+      margin-bottom: 2.5rem;
+    }
+    .tagline {
+      font-size: 1.3rem;
+      color: #a0a8b8;
+      letter-spacing: 1px;
+      text-align: center;
+      line-height: 1.8;
+    }
+    .line {
+      width: 60px;
+      height: 3px;
+      background: #c8a94e;
+      margin-bottom: 2rem;
+    }
+    .url {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 0.85rem;
+      color: rgba(200, 169, 78, 0.6);
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="border-accent"></div>
+  <div class="logo">ZEL<span class="accent">O</span>S</div>
+  <p class="subtitle">Sports Management</p>
+  <div class="line"></div>
+  <p class="tagline">選手の可能性を最大限に引き出し、<br>世界への扉を開く。</p>
+  <p class="url">zelos2026.github.io</p>
+</body>
+</html>

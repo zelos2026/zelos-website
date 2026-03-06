@@ -15,8 +15,37 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ZELOS | Sports Management">
   <meta name="twitter:description" content="選手の可能性を最大限に引き出し、世界への扉を開く。">
-  <!-- Favicon -->
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ZELOS Inc.",
+    "alternateName": "株式会社ZELOS",
+    "url": "https://zelos2026.github.io/zelos-website/",
+    "logo": "https://zelos2026.github.io/zelos-website/images/logo.png",
+    "description": "Sports Management - 選手の可能性を最大限に引き出し、世界への扉を開く。",
+    "foundingDate": "2026",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2-17-3 Nagatacho",
+      "addressLocality": "Chiyoda-ku",
+      "addressRegion": "Tokyo",
+      "addressCountry": "JP"
+    },
+    "email": "zelos.sm@gmail.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Takuya Watanabe",
+      "jobTitle": "CEO / Founder"
+    },
+    "areaServed": ["Japan", "Laos", "Thailand", "Southeast Asia"],
+    "knowsAbout": ["Sports Management", "Player Management", "International Soccer Tryouts"]
+  }
+  </script>
+  <!-- Favicon & Icons -->
   <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -568,6 +597,21 @@
       height: 100%;
       object-fit: cover;
       object-position: center top;
+      filter: brightness(0.95) contrast(1.05);
+      transition: filter 0.4s ease;
+    }
+
+    .profile-photo:hover img {
+      filter: brightness(1) contrast(1);
+    }
+
+    .profile-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(10, 22, 40, 0.4) 100%);
+      border-radius: 12px;
+      pointer-events: none;
     }
 
     .profile-photo-placeholder {
@@ -1078,6 +1122,30 @@
       box-shadow: 0 8px 25px rgba(200, 169, 78, 0.3);
     }
 
+    .form-submit.loading {
+      opacity: 0.7;
+      pointer-events: none;
+      position: relative;
+    }
+
+    .form-submit.loading::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--primary);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: submitSpin 0.6s linear infinite;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @keyframes submitSpin {
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+
     /* ========================================
        Footer
     ======================================== */
@@ -1271,6 +1339,7 @@
       font-size: 0.78rem;
       font-weight: 600;
       color: var(--accent);
+      text-decoration: none;
       margin-top: 0.8rem;
       opacity: 0;
       transform: translateX(-8px);
@@ -1473,7 +1542,7 @@
   <section class="hero" id="hero">
     <canvas class="hero-particles" id="particles"></canvas>
     <div class="hero-content">
-      <div class="hero-badge">Sports Management</div>
+      <div class="hero-badge" data-i18n="hero.badge">Since 2026 — Tokyo / Southeast Asia</div>
       <h1 class="hero-title">ZEL<span class="accent">O</span>S</h1>
       <p class="hero-subtitle">Sports Management</p>
       <p class="hero-tagline" data-i18n-html="hero.tagline">選手の可能性を最大限に引き出し、<br>世界への扉を開く。</p>
@@ -1574,7 +1643,7 @@
       </div>
       <div class="profile-card fade-in">
         <div class="profile-photo">
-          <img src="images/profile.jpg" alt="渡邉 卓矢">
+          <img src="images/profile.jpg" alt="渡邉 卓矢" loading="lazy">
         </div>
         <div class="profile-info">
           <h3>渡邉 卓矢</h3>
@@ -1688,7 +1757,7 @@
           </div>
           <h3 data-i18n="svc.s1.title">選手マネジメント</h3>
           <p data-i18n="svc.s1.desc">選手のキャリア設計から契約交渉、日常のサポートまで。一人ひとりに合わせた最適なプランを提供します。</p>
-          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <a href="#contact" class="service-cta" data-i18n-html="svc.cta">お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1696,7 +1765,7 @@
           </div>
           <h3 data-i18n="svc.s2.title">海外挑戦サポート</h3>
           <p data-i18n="svc.s2.desc">海外クラブとのネットワークを活かし、トライアウトの機会創出や移籍交渉を支援します。</p>
-          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <a href="#contact" class="service-cta" data-i18n-html="svc.cta">お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1704,7 +1773,7 @@
           </div>
           <h3 data-i18n="svc.s3.title">スポンサーシップ</h3>
           <p data-i18n="svc.s3.desc">選手とスポンサー企業のマッチングを行い、双方にとって価値あるパートナーシップを構築します。</p>
-          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <a href="#contact" class="service-cta" data-i18n-html="svc.cta">お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1712,7 +1781,7 @@
           </div>
           <h3 data-i18n="svc.s4.title">イベント企画・運営</h3>
           <p data-i18n="svc.s4.desc">トライアウトやスポーツキャンプなど、選手の成長につながるイベントを企画・運営します。</p>
-          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <a href="#contact" class="service-cta" data-i18n-html="svc.cta">お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1720,7 +1789,7 @@
           </div>
           <h3 data-i18n="svc.s5.title">キャリア教育</h3>
           <p data-i18n="svc.s5.desc">セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。</p>
-          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <a href="#contact" class="service-cta" data-i18n-html="svc.cta">お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
@@ -1728,7 +1797,7 @@
           </div>
           <h3 data-i18n="svc.s6.title">コンサルティング</h3>
           <p data-i18n="svc.s6.desc">クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。</p>
-          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <a href="#contact" class="service-cta" data-i18n-html="svc.cta">お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
       </div>
     </div>
@@ -1907,14 +1976,16 @@
   <footer class="footer">
     <div class="footer-brand">ZEL<span class="accent">O</span>S</div>
     <p class="footer-tagline">Sports Management</p>
+    <!-- SNS links: 実際のアカウントURLに差し替えてから表示する
     <div class="footer-sns">
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://www.instagram.com/YOUR_ACCOUNT" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </a>
-      <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X">
+      <a href="https://x.com/YOUR_ACCOUNT" target="_blank" rel="noopener" aria-label="X">
         <svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"/></svg>
       </a>
     </div>
+    -->
     <p class="footer-copy">&copy; 2026 ZELOS. All rights reserved.</p>
   </footer>
 
@@ -1929,7 +2000,10 @@
     // ========================================
     const translations = {
       ja: {
+        'hero.badge': 'Since 2026 — Tokyo / Southeast Asia',
         'hero.tagline': '選手の可能性を最大限に引き出し、<br>世界への扉を開く。',
+        'meta.title': 'ZELOS | Sports Management',
+        'meta.desc': 'ZELOS - スポーツマネジメント。選手の可能性を最大限に引き出し、世界への扉を開く。',
         'about.title': 'ZELOSについて',
         'about.desc': 'スポーツを通じて人と世界をつなぎ、新しい価値を創造する。',
         'about.p1': '<span class="highlight">ZELOS</span>はギリシャ語で「熱意・情熱」を意味する言葉。私たちはその名の通り、スポーツに対する情熱を原動力に活動しています。',
@@ -1977,7 +2051,7 @@
         'svc.s5.desc': 'セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。',
         'svc.s6.title': 'コンサルティング',
         'svc.s6.desc': 'クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。',
-        'svc.cta': '詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
+        'svc.cta': 'お問い合わせ <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
         'events.title': 'イベント情報',
         'events.desc': 'ZELOSが主催・運営するイベントをご紹介します。',
         'events.e1.title': '海外サッカートライアウト 2026',
@@ -2017,7 +2091,10 @@
         'form.submit': '送信する',
       },
       en: {
+        'hero.badge': 'Since 2026 — Tokyo / Southeast Asia',
         'hero.tagline': 'Unlocking the full potential of athletes<br>and opening doors to the world.',
+        'meta.title': 'ZELOS | Sports Management',
+        'meta.desc': 'ZELOS - Sports Management. Unlocking the full potential of athletes and opening doors to the world.',
         'about.title': 'About ZELOS',
         'about.desc': 'Connecting people and the world through sports, creating new value.',
         'about.p1': '<span class="highlight">ZELOS</span> comes from the Greek word meaning "zeal" and "passion." True to our name, we are driven by our passion for sports.',
@@ -2065,7 +2142,7 @@
         'svc.s5.desc': 'Providing education programs for second careers and mentoring for young athletes.',
         'svc.s6.title': 'Consulting',
         'svc.s6.desc': 'Offering strategic planning and advisory services for clubs and companies in the sports business.',
-        'svc.cta': 'Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
+        'svc.cta': 'Contact Us <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
         'events.title': 'Events',
         'events.desc': 'Events hosted and organized by ZELOS.',
         'events.e1.title': 'International Soccer Tryout 2026',
@@ -2140,6 +2217,18 @@
       document.querySelectorAll('.lang-option').forEach(opt => {
         opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
       });
+
+      // Update meta info
+      const t = translations[lang];
+      if (t['meta.title']) document.title = t['meta.title'];
+      const metaDesc = document.querySelector('meta[name="description"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const twDesc = document.querySelector('meta[name="twitter:description"]');
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (metaDesc && t['meta.desc']) metaDesc.content = t['meta.desc'];
+      if (ogDesc && t['meta.desc']) ogDesc.content = t['meta.desc'];
+      if (twDesc && t['meta.desc']) twDesc.content = t['meta.desc'];
+      if (ogLocale) ogLocale.content = lang === 'ja' ? 'ja_JP' : 'en_US';
 
       // FormSubmit subject
       const subjectInput = document.querySelector('input[name="_subject"]');
@@ -2351,6 +2440,19 @@
     }, { threshold: 0.5 });
 
     sectionLines.forEach(line => lineObserver.observe(line));
+
+    // ========================================
+    // Form Submit Loading UX
+    // ========================================
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function() {
+        const btn = this.querySelector('.form-submit');
+        const lang = localStorage.getItem('zelos-lang') || 'ja';
+        btn.classList.add('loading');
+        btn.textContent = lang === 'ja' ? '送信中...' : 'Sending...';
+      });
+    }
 
   </script>
 </body>
