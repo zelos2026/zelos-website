@@ -195,6 +195,44 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: none;
+      border: 1px solid rgba(200, 169, 78, 0.3);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      margin-left: 1.2rem;
+      transition: border-color var(--transition);
+      flex-shrink: 0;
+    }
+
+    .lang-toggle:hover {
+      border-color: rgba(200, 169, 78, 0.6);
+    }
+
+    .lang-option {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      transition: color var(--transition);
+      pointer-events: none;
+    }
+
+    .lang-option.active {
+      color: var(--accent);
+    }
+
+    .lang-divider {
+      font-size: 0.65rem;
+      color: rgba(200, 169, 78, 0.3);
+      pointer-events: none;
+    }
+
     /* ========================================
        Hero Section
     ======================================== */
@@ -1120,6 +1158,13 @@
     @media (max-width: 768px) {
       .nav-toggle {
         display: block;
+        order: 3;
+      }
+
+      .lang-toggle {
+        order: 2;
+        margin-left: auto;
+        margin-right: 0.8rem;
       }
 
       .nav-links {
@@ -1416,6 +1461,11 @@
         <li><a href="#events">Events</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-option active" data-lang="ja">JP</span>
+        <span class="lang-divider">|</span>
+        <span class="lang-option" data-lang="en">EN</span>
+      </button>
     </div>
   </nav>
 
@@ -1426,7 +1476,7 @@
       <div class="hero-badge">Sports Management</div>
       <h1 class="hero-title">ZEL<span class="accent">O</span>S</h1>
       <p class="hero-subtitle">Sports Management</p>
-      <p class="hero-tagline">選手の可能性を最大限に引き出し、<br>世界への扉を開く。</p>
+      <p class="hero-tagline" data-i18n-html="hero.tagline">選手の可能性を最大限に引き出し、<br>世界への扉を開く。</p>
       <a href="#about" class="hero-cta">Learn More</a>
     </div>
     <div class="scroll-indicator"><span></span></div>
@@ -1445,21 +1495,21 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">About Us</span>
-        <h2 class="section-title">ZELOSについて</h2>
+        <h2 class="section-title" data-i18n="about.title">ZELOSについて</h2>
         <div class="section-line"></div>
-        <p class="section-desc">スポーツを通じて人と世界をつなぎ、新しい価値を創造する。</p>
+        <p class="section-desc" data-i18n="about.desc">スポーツを通じて人と世界をつなぎ、新しい価値を創造する。</p>
       </div>
       <div class="about-content">
         <div class="about-text fade-in">
-          <p>
+          <p data-i18n-html="about.p1">
             <span class="highlight">ZELOS</span>はギリシャ語で「熱意・情熱」を意味する言葉。
             私たちはその名の通り、スポーツに対する情熱を原動力に活動しています。
           </p>
-          <p>
+          <p data-i18n="about.p2">
             選手一人ひとりの夢と向き合い、キャリア設計から国際的な舞台への挑戦まで、
             トータルにサポート。スポーツの力で人々の可能性を広げ、社会に新たな価値を届けます。
           </p>
-          <p>
+          <p data-i18n="about.p3">
             日本と世界をつなぐ架け橋として、選手・クラブ・スポンサーの三者がともに成長できる
             エコシステムの構築を目指しています。
           </p>
@@ -1470,37 +1520,37 @@
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
             <h4>Global</h4>
-            <p>世界を舞台にした<br>ネットワーク</p>
+            <p data-i18n-html="about.value1">世界を舞台にした<br>ネットワーク</p>
           </div>
           <div class="value-card stagger-item">
             <div class="value-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <h4>Trust</h4>
-            <p>選手との<br>信頼関係</p>
+            <p data-i18n-html="about.value2">選手との<br>信頼関係</p>
           </div>
           <div class="value-card stagger-item">
             <div class="value-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
             <h4>Growth</h4>
-            <p>継続的な<br>成長支援</p>
+            <p data-i18n-html="about.value3">継続的な<br>成長支援</p>
           </div>
           <div class="value-card stagger-item">
             <div class="value-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
             <h4>Passion</h4>
-            <p>情熱を持った<br>マネジメント</p>
+            <p data-i18n-html="about.value4">情熱を持った<br>マネジメント</p>
           </div>
         </div>
       </div>
       <table class="company-table fade-in">
-        <tr><th>会社名</th><td>株式会社ZELOS</td></tr>
-        <tr><th>設立</th><td>2026年</td></tr>
-        <tr><th>代表者</th><td>渡邉 卓矢</td></tr>
-        <tr><th>所在地</th><td>東京都千代田区永田町2-17-3</td></tr>
-        <tr><th>事業内容</th><td>スポーツマネジメント / イベント企画・運営 / コンサルティング</td></tr>
+        <tr><th data-i18n="table.company">会社名</th><td data-i18n="table.companyVal">株式会社ZELOS</td></tr>
+        <tr><th data-i18n="table.founded">設立</th><td data-i18n="table.foundedVal">2026年</td></tr>
+        <tr><th data-i18n="table.ceo">代表者</th><td data-i18n="table.ceoVal">渡邉 卓矢</td></tr>
+        <tr><th data-i18n="table.address">所在地</th><td data-i18n="table.addressVal">東京都千代田区永田町2-17-3</td></tr>
+        <tr><th data-i18n="table.business">事業内容</th><td data-i18n="table.businessVal">スポーツマネジメント / イベント企画・運営 / コンサルティング</td></tr>
         <tr><th>Email</th><td>zelos.sm@gmail.com</td></tr>
       </table>
     </div>
@@ -1519,7 +1569,7 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Representative</span>
-        <h2 class="section-title">代表プロフィール</h2>
+        <h2 class="section-title" data-i18n="profile.title">代表プロフィール</h2>
         <div class="section-line"></div>
       </div>
       <div class="profile-card fade-in">
@@ -1530,7 +1580,7 @@
           <h3>渡邉 卓矢</h3>
           <p class="name-en">Takuya Watanabe</p>
           <span class="title">CEO / Founder</span>
-          <p class="profile-bio">
+          <p class="profile-bio" data-i18n="profile.bio">
             スポーツ業界で培った経験とグローバルなネットワークを活かし、
             選手のキャリアを多角的にサポート。国内外のクラブや関係者との強いパイプを持ち、
             選手一人ひとりに寄り添ったマネジメントを実践しています。
@@ -1540,13 +1590,13 @@
               <div class="detail-icon">
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
-              <span>東京都</span>
+              <span data-i18n="profile.location">東京都</span>
             </div>
             <div class="profile-detail-item">
               <div class="detail-icon">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               </div>
-              <span>日本 / ラオス / タイ</span>
+              <span data-i18n="profile.countries">日本 / ラオス / タイ</span>
             </div>
           </div>
           <div class="profile-career">
@@ -1554,23 +1604,23 @@
             <div class="career-timeline">
               <div class="career-item">
                 <span class="career-year">2026</span>
-                <span class="career-desc">株式会社ZELOS設立 / 代表取締役就任</span>
+                <span class="career-desc" data-i18n="career.c1">株式会社ZELOS設立 / 代表取締役就任</span>
               </div>
               <div class="career-item">
                 <span class="career-year">2026</span>
-                <span class="career-desc">海外サッカートライアウト事業開始</span>
+                <span class="career-desc" data-i18n="career.c2">海外サッカートライアウト事業開始</span>
               </div>
               <div class="career-item">
                 <span class="career-year">2025</span>
-                <span class="career-desc">ラオスでのサッカー指導・普及活動</span>
+                <span class="career-desc" data-i18n="career.c3">ラオスでのサッカー指導・普及活動</span>
               </div>
               <div class="career-item">
                 <span class="career-year">-</span>
-                <span class="career-desc">東南アジアクラブとのネットワーク構築</span>
+                <span class="career-desc" data-i18n="career.c4">東南アジアクラブとのネットワーク構築</span>
               </div>
               <div class="career-item">
                 <span class="career-year">-</span>
-                <span class="career-desc">選手マネジメント・移籍交渉サポート開始</span>
+                <span class="career-desc" data-i18n="career.c5">選手マネジメント・移籍交渉サポート開始</span>
               </div>
             </div>
           </div>
@@ -1578,34 +1628,34 @@
             <h4>Player Career</h4>
             <div class="career-timeline">
               <div class="career-item">
-                <span class="career-desc">サラワンユナイテッド（ラオス）</span>
+                <span class="career-desc" data-i18n="player.p1">サラワンユナイテッド（ラオス）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">エズラFC（ラオス）</span>
+                <span class="career-desc" data-i18n="player.p2">エズラFC（ラオス）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">ビエンチャンFC（ラオス）</span>
+                <span class="career-desc" data-i18n="player.p3">ビエンチャンFC（ラオス）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">サムットプラカンFC（タイ）</span>
+                <span class="career-desc" data-i18n="player.p4">サムットプラカンFC（タイ）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">スリースタークラブ（ネパール）</span>
+                <span class="career-desc" data-i18n="player.p5">スリースタークラブ（ネパール）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">セレンゲプレス・ファルコンズ / ゴヨFC / アスレティック220FC（モンゴル）</span>
+                <span class="career-desc" data-i18n="player.p6">セレンゲプレス・ファルコンズ / ゴヨFC / アスレティック220FC（モンゴル）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">CMAC FC（カンボジア）</span>
+                <span class="career-desc" data-i18n="player.p7">CMAC FC（カンボジア）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">HBO東京 / スポルティーバつくば（日本）</span>
+                <span class="career-desc" data-i18n="player.p8">HBO東京 / スポルティーバつくば（日本）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">JAPANサッカーカレッジ（日本）</span>
+                <span class="career-desc" data-i18n="player.p9">JAPANサッカーカレッジ（日本）</span>
               </div>
               <div class="career-item">
-                <span class="career-desc">エストゥディアンテス・デ・ラプラタ（アルゼンチン）</span>
+                <span class="career-desc" data-i18n="player.p10">エストゥディアンテス・デ・ラプラタ（アルゼンチン）</span>
               </div>
             </div>
           </div>
@@ -1627,58 +1677,58 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Services</span>
-        <h2 class="section-title">事業内容</h2>
+        <h2 class="section-title" data-i18n="services.title">事業内容</h2>
         <div class="section-line"></div>
-        <p class="section-desc">スポーツに関わるすべての人に、最適なソリューションを提供します。</p>
+        <p class="section-desc" data-i18n="services.desc">スポーツに関わるすべての人に、最適なソリューションを提供します。</p>
       </div>
       <div class="services-grid">
         <div class="service-card stagger-item">
           <div class="service-icon">
             <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
           </div>
-          <h3>選手マネジメント</h3>
-          <p>選手のキャリア設計から契約交渉、日常のサポートまで。一人ひとりに合わせた最適なプランを提供します。</p>
-          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <h3 data-i18n="svc.s1.title">選手マネジメント</h3>
+          <p data-i18n="svc.s1.desc">選手のキャリア設計から契約交渉、日常のサポートまで。一人ひとりに合わせた最適なプランを提供します。</p>
+          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
-          <h3>海外挑戦サポート</h3>
-          <p>海外クラブとのネットワークを活かし、トライアウトの機会創出や移籍交渉を支援します。</p>
-          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <h3 data-i18n="svc.s2.title">海外挑戦サポート</h3>
+          <p data-i18n="svc.s2.desc">海外クラブとのネットワークを活かし、トライアウトの機会創出や移籍交渉を支援します。</p>
+          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
             <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           </div>
-          <h3>スポンサーシップ</h3>
-          <p>選手とスポンサー企業のマッチングを行い、双方にとって価値あるパートナーシップを構築します。</p>
-          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <h3 data-i18n="svc.s3.title">スポンサーシップ</h3>
+          <p data-i18n="svc.s3.desc">選手とスポンサー企業のマッチングを行い、双方にとって価値あるパートナーシップを構築します。</p>
+          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
             <svg viewBox="0 0 24 24"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 10.33 9.33 11 8.5 11h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
           </div>
-          <h3>イベント企画・運営</h3>
-          <p>トライアウトやスポーツキャンプなど、選手の成長につながるイベントを企画・運営します。</p>
-          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <h3 data-i18n="svc.s4.title">イベント企画・運営</h3>
+          <p data-i18n="svc.s4.desc">トライアウトやスポーツキャンプなど、選手の成長につながるイベントを企画・運営します。</p>
+          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
             <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           </div>
-          <h3>キャリア教育</h3>
-          <p>セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。</p>
-          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <h3 data-i18n="svc.s5.title">キャリア教育</h3>
+          <p data-i18n="svc.s5.desc">セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。</p>
+          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
         <div class="service-card stagger-item">
           <div class="service-icon">
             <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </div>
-          <h3>コンサルティング</h3>
-          <p>クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。</p>
-          <span class="service-cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <h3 data-i18n="svc.s6.title">コンサルティング</h3>
+          <p data-i18n="svc.s6.desc">クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。</p>
+          <span class="service-cta" data-i18n-html="svc.cta">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
         </div>
       </div>
     </div>
@@ -1697,9 +1747,9 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Events</span>
-        <h2 class="section-title">イベント情報</h2>
+        <h2 class="section-title" data-i18n="events.title">イベント情報</h2>
         <div class="section-line"></div>
-        <p class="section-desc">ZELOSが主催・運営するイベントをご紹介します。</p>
+        <p class="section-desc" data-i18n="events.desc">ZELOSが主催・運営するイベントをご紹介します。</p>
       </div>
       <div class="events-list">
         <a href="https://zelos2026.github.io/soccer-tryout-2026/" target="_blank" rel="noopener" class="event-card stagger-item">
@@ -1709,20 +1759,20 @@
             <span class="year">2026</span>
           </div>
           <div class="event-info">
-            <h3>海外サッカートライアウト 2026</h3>
-            <p>海外プロクラブのスカウトが直接選手を評価する、国際トライアウトイベント。詳細はこちら。</p>
+            <h3 data-i18n="events.e1.title">海外サッカートライアウト 2026</h3>
+            <p data-i18n="events.e1.desc">海外プロクラブのスカウトが直接選手を評価する、国際トライアウトイベント。詳細はこちら。</p>
             <div class="event-meta">
-              <span>
+              <span data-i18n-html="events.e1.location">
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 東京都葛飾区
               </span>
-              <span>
+              <span data-i18n-html="events.e1.age">
                 <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                 18歳〜26歳
               </span>
             </div>
           </div>
-          <span class="event-status open">募集中</span>
+          <span class="event-status open" data-i18n="events.e1.status">募集中</span>
         </a>
 
         <div class="event-card stagger-item">
@@ -1732,19 +1782,19 @@
             <span class="year">2026</span>
           </div>
           <div class="event-info">
-            <h3>スポーツキャリアセミナー</h3>
-            <p>現役・元プロ選手を招いたキャリアデザインセミナー。選手としての将来を考える機会を提供します。</p>
+            <h3 data-i18n="events.e2.title">スポーツキャリアセミナー</h3>
+            <p data-i18n="events.e2.desc">現役・元プロ選手を招いたキャリアデザインセミナー。選手としての将来を考える機会を提供します。</p>
             <div class="event-meta">
-              <span>
+              <span data-i18n-html="events.e2.location">
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 場所未定
               </span>
             </div>
           </div>
-          <span class="event-status upcoming">準備中</span>
+          <span class="event-status upcoming" data-i18n="events.e2.status">準備中</span>
         </div>
       </div>
-      <p class="events-note fade-in">新しいイベント情報は随時更新します。お問い合わせもお気軽にどうぞ。</p>
+      <p class="events-note fade-in" data-i18n="events.note">新しいイベント情報は随時更新します。お問い合わせもお気軽にどうぞ。</p>
     </div>
   </section>
 
@@ -1761,20 +1811,20 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Achievements</span>
-        <h2 class="section-title">活動実績</h2>
+        <h2 class="section-title" data-i18n="achv.title">活動実績</h2>
         <div class="section-line"></div>
       </div>
       <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
         <div class="service-card stagger-item" style="border-left: 3px solid var(--accent);">
-          <h3 style="font-size: 0.95rem;">海外サッカートライアウト開催</h3>
-          <p>東南アジアのプロクラブスカウトを招聘し、国内選手の海外挑戦を直接サポートするトライアウトを企画・実施。</p>
+          <h3 style="font-size: 0.95rem;" data-i18n="achv.a1.title">海外サッカートライアウト開催</h3>
+          <p data-i18n="achv.a1.desc">東南アジアのプロクラブスカウトを招聘し、国内選手の海外挑戦を直接サポートするトライアウトを企画・実施。</p>
         </div>
         <div class="service-card stagger-item" style="border-left: 3px solid var(--accent);">
-          <h3 style="font-size: 0.95rem;">ラオスでのサッカー普及活動</h3>
-          <p>ラオス現地でのサッカー指導を通じて、東南アジアのスポーツ発展に貢献。現地クラブとの関係構築を実現。</p>
+          <h3 style="font-size: 0.95rem;" data-i18n="achv.a2.title">ラオスでのサッカー普及活動</h3>
+          <p data-i18n="achv.a2.desc">ラオス現地でのサッカー指導を通じて、東南アジアのスポーツ発展に貢献。現地クラブとの関係構築を実現。</p>
         </div>
       </div>
-      <p class="events-note fade-in" style="margin-top: 2rem;">活動実績は随時更新していきます。</p>
+      <p class="events-note fade-in" style="margin-top: 2rem;" data-i18n="achv.note">活動実績は随時更新していきます。</p>
     </div>
   </section>
 
@@ -1783,14 +1833,14 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Contact</span>
-        <h2 class="section-title">お問い合わせ</h2>
+        <h2 class="section-title" data-i18n="contact.title">お問い合わせ</h2>
         <div class="section-line"></div>
-        <p class="section-desc">ご質問やご相談がございましたら、お気軽にお問い合わせください。</p>
+        <p class="section-desc" data-i18n="contact.desc">ご質問やご相談がございましたら、お気軽にお問い合わせください。</p>
       </div>
       <div class="contact-grid">
         <div class="contact-info fade-in">
-          <h3>まずはお気軽にご連絡ください</h3>
-          <p>
+          <h3 data-i18n="contact.heading">まずはお気軽にご連絡ください</h3>
+          <p data-i18n="contact.text">
             選手マネジメント、イベントへの参加、スポンサーシップなど、
             スポーツに関するあらゆるご相談に対応いたします。
             お気軽にメッセージをお送りください。
@@ -1806,7 +1856,7 @@
               <div class="icon-box">
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
-              <span>東京都千代田区永田町2-17-3</span>
+              <span data-i18n="contact.address">東京都千代田区永田町2-17-3</span>
             </div>
           </div>
         </div>
@@ -1820,34 +1870,34 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>お名前<span class="required">*</span></label>
-              <input type="text" name="name" required placeholder="山田 太郎">
+              <label data-i18n-html="form.name">お名前<span class="required">*</span></label>
+              <input type="text" name="name" required placeholder="山田 太郎" data-i18n-placeholder="form.namePh">
             </div>
             <div class="form-group">
-              <label>メールアドレス<span class="required">*</span></label>
+              <label data-i18n-html="form.email">メールアドレス<span class="required">*</span></label>
               <input type="email" name="email" required placeholder="example@email.com">
             </div>
           </div>
           <div class="form-group">
-            <label>電話番号</label>
-            <input type="tel" name="phone" placeholder="090-1234-5678">
+            <label data-i18n="form.phone">電話番号</label>
+            <input type="tel" name="phone" placeholder="090-1234-5678" data-i18n-placeholder="form.phonePh">
           </div>
           <div class="form-group">
-            <label>お問い合わせ種別</label>
+            <label data-i18n="form.category">お問い合わせ種別</label>
             <select name="category">
-              <option value="">選択してください</option>
-              <option value="選手マネジメント">選手マネジメントについて</option>
-              <option value="イベント">イベントについて</option>
-              <option value="スポンサーシップ">スポンサーシップについて</option>
-              <option value="取材・メディア">取材・メディア関連</option>
-              <option value="その他">その他</option>
+              <option value="" data-i18n="form.catDefault">選択してください</option>
+              <option value="選手マネジメント" data-i18n="form.cat1">選手マネジメントについて</option>
+              <option value="イベント" data-i18n="form.cat2">イベントについて</option>
+              <option value="スポンサーシップ" data-i18n="form.cat3">スポンサーシップについて</option>
+              <option value="取材・メディア" data-i18n="form.cat4">取材・メディア関連</option>
+              <option value="その他" data-i18n="form.cat5">その他</option>
             </select>
           </div>
           <div class="form-group">
-            <label>お問い合わせ内容<span class="required">*</span></label>
-            <textarea name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+            <label data-i18n-html="form.message">お問い合わせ内容<span class="required">*</span></label>
+            <textarea name="message" required placeholder="お問い合わせ内容をご記入ください" data-i18n-placeholder="form.messagePh"></textarea>
           </div>
-          <button type="submit" class="form-submit">送信する</button>
+          <button type="submit" class="form-submit" data-i18n="form.submit">送信する</button>
         </form>
       </div>
     </div>
@@ -1874,6 +1924,249 @@
   </button>
 
   <script>
+    // ========================================
+    // i18n Translations
+    // ========================================
+    const translations = {
+      ja: {
+        'hero.tagline': '選手の可能性を最大限に引き出し、<br>世界への扉を開く。',
+        'about.title': 'ZELOSについて',
+        'about.desc': 'スポーツを通じて人と世界をつなぎ、新しい価値を創造する。',
+        'about.p1': '<span class="highlight">ZELOS</span>はギリシャ語で「熱意・情熱」を意味する言葉。私たちはその名の通り、スポーツに対する情熱を原動力に活動しています。',
+        'about.p2': '選手一人ひとりの夢と向き合い、キャリア設計から国際的な舞台への挑戦まで、トータルにサポート。スポーツの力で人々の可能性を広げ、社会に新たな価値を届けます。',
+        'about.p3': '日本と世界をつなぐ架け橋として、選手・クラブ・スポンサーの三者がともに成長できるエコシステムの構築を目指しています。',
+        'about.value1': '世界を舞台にした<br>ネットワーク',
+        'about.value2': '選手との<br>信頼関係',
+        'about.value3': '継続的な<br>成長支援',
+        'about.value4': '情熱を持った<br>マネジメント',
+        'table.company': '会社名', 'table.companyVal': '株式会社ZELOS',
+        'table.founded': '設立', 'table.foundedVal': '2026年',
+        'table.ceo': '代表者', 'table.ceoVal': '渡邉 卓矢',
+        'table.address': '所在地', 'table.addressVal': '東京都千代田区永田町2-17-3',
+        'table.business': '事業内容', 'table.businessVal': 'スポーツマネジメント / イベント企画・運営 / コンサルティング',
+        'profile.title': '代表プロフィール',
+        'profile.bio': 'スポーツ業界で培った経験とグローバルなネットワークを活かし、選手のキャリアを多角的にサポート。国内外のクラブや関係者との強いパイプを持ち、選手一人ひとりに寄り添ったマネジメントを実践しています。',
+        'profile.location': '東京都',
+        'profile.countries': '日本 / ラオス / タイ',
+        'career.c1': '株式会社ZELOS設立 / 代表取締役就任',
+        'career.c2': '海外サッカートライアウト事業開始',
+        'career.c3': 'ラオスでのサッカー指導・普及活動',
+        'career.c4': '東南アジアクラブとのネットワーク構築',
+        'career.c5': '選手マネジメント・移籍交渉サポート開始',
+        'player.p1': 'サラワンユナイテッド（ラオス）',
+        'player.p2': 'エズラFC（ラオス）',
+        'player.p3': 'ビエンチャンFC（ラオス）',
+        'player.p4': 'サムットプラカンFC（タイ）',
+        'player.p5': 'スリースタークラブ（ネパール）',
+        'player.p6': 'セレンゲプレス・ファルコンズ / ゴヨFC / アスレティック220FC（モンゴル）',
+        'player.p7': 'CMAC FC（カンボジア）',
+        'player.p8': 'HBO東京 / スポルティーバつくば（日本）',
+        'player.p9': 'JAPANサッカーカレッジ（日本）',
+        'player.p10': 'エストゥディアンテス・デ・ラプラタ（アルゼンチン）',
+        'services.title': '事業内容',
+        'services.desc': 'スポーツに関わるすべての人に、最適なソリューションを提供します。',
+        'svc.s1.title': '選手マネジメント',
+        'svc.s1.desc': '選手のキャリア設計から契約交渉、日常のサポートまで。一人ひとりに合わせた最適なプランを提供します。',
+        'svc.s2.title': '海外挑戦サポート',
+        'svc.s2.desc': '海外クラブとのネットワークを活かし、トライアウトの機会創出や移籍交渉を支援します。',
+        'svc.s3.title': 'スポンサーシップ',
+        'svc.s3.desc': '選手とスポンサー企業のマッチングを行い、双方にとって価値あるパートナーシップを構築します。',
+        'svc.s4.title': 'イベント企画・運営',
+        'svc.s4.desc': 'トライアウトやスポーツキャンプなど、選手の成長につながるイベントを企画・運営します。',
+        'svc.s5.title': 'キャリア教育',
+        'svc.s5.desc': 'セカンドキャリアを見据えた教育プログラムや、若手選手向けのメンタリングを提供します。',
+        'svc.s6.title': 'コンサルティング',
+        'svc.s6.desc': 'クラブや企業向けに、スポーツビジネスに関する戦略立案やアドバイザリーサービスを提供します。',
+        'svc.cta': '詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
+        'events.title': 'イベント情報',
+        'events.desc': 'ZELOSが主催・運営するイベントをご紹介します。',
+        'events.e1.title': '海外サッカートライアウト 2026',
+        'events.e1.desc': '海外プロクラブのスカウトが直接選手を評価する、国際トライアウトイベント。詳細はこちら。',
+        'events.e1.location': '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 東京都葛飾区',
+        'events.e1.age': '<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 18歳〜26歳',
+        'events.e1.status': '募集中',
+        'events.e2.title': 'スポーツキャリアセミナー',
+        'events.e2.desc': '現役・元プロ選手を招いたキャリアデザインセミナー。選手としての将来を考える機会を提供します。',
+        'events.e2.location': '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 場所未定',
+        'events.e2.status': '準備中',
+        'events.note': '新しいイベント情報は随時更新します。お問い合わせもお気軽にどうぞ。',
+        'achv.title': '活動実績',
+        'achv.a1.title': '海外サッカートライアウト開催',
+        'achv.a1.desc': '東南アジアのプロクラブスカウトを招聘し、国内選手の海外挑戦を直接サポートするトライアウトを企画・実施。',
+        'achv.a2.title': 'ラオスでのサッカー普及活動',
+        'achv.a2.desc': 'ラオス現地でのサッカー指導を通じて、東南アジアのスポーツ発展に貢献。現地クラブとの関係構築を実現。',
+        'achv.note': '活動実績は随時更新していきます。',
+        'contact.title': 'お問い合わせ',
+        'contact.desc': 'ご質問やご相談がございましたら、お気軽にお問い合わせください。',
+        'contact.heading': 'まずはお気軽にご連絡ください',
+        'contact.text': '選手マネジメント、イベントへの参加、スポンサーシップなど、スポーツに関するあらゆるご相談に対応いたします。お気軽にメッセージをお送りください。',
+        'contact.address': '東京都千代田区永田町2-17-3',
+        'form.name': 'お名前<span class="required">*</span>',
+        'form.namePh': '山田 太郎',
+        'form.email': 'メールアドレス<span class="required">*</span>',
+        'form.phone': '電話番号', 'form.phonePh': '090-1234-5678',
+        'form.category': 'お問い合わせ種別',
+        'form.catDefault': '選択してください',
+        'form.cat1': '選手マネジメントについて',
+        'form.cat2': 'イベントについて',
+        'form.cat3': 'スポンサーシップについて',
+        'form.cat4': '取材・メディア関連',
+        'form.cat5': 'その他',
+        'form.message': 'お問い合わせ内容<span class="required">*</span>',
+        'form.messagePh': 'お問い合わせ内容をご記入ください',
+        'form.submit': '送信する',
+      },
+      en: {
+        'hero.tagline': 'Unlocking the full potential of athletes<br>and opening doors to the world.',
+        'about.title': 'About ZELOS',
+        'about.desc': 'Connecting people and the world through sports, creating new value.',
+        'about.p1': '<span class="highlight">ZELOS</span> comes from the Greek word meaning "zeal" and "passion." True to our name, we are driven by our passion for sports.',
+        'about.p2': 'We work closely with each athlete\'s dreams, providing total support from career planning to international challenges. We expand possibilities through the power of sports and deliver new value to society.',
+        'about.p3': 'As a bridge connecting Japan and the world, we aim to build an ecosystem where athletes, clubs, and sponsors can grow together.',
+        'about.value1': 'Global<br>Network',
+        'about.value2': 'Athlete<br>Trust',
+        'about.value3': 'Continuous<br>Growth Support',
+        'about.value4': 'Passionate<br>Management',
+        'table.company': 'Company', 'table.companyVal': 'ZELOS Inc.',
+        'table.founded': 'Founded', 'table.foundedVal': '2026',
+        'table.ceo': 'CEO', 'table.ceoVal': 'Takuya Watanabe',
+        'table.address': 'Address', 'table.addressVal': '2-17-3 Nagatacho, Chiyoda-ku, Tokyo',
+        'table.business': 'Business', 'table.businessVal': 'Sports Management / Event Planning & Operations / Consulting',
+        'profile.title': 'Representative',
+        'profile.bio': 'Leveraging experience in the sports industry and a global network, providing multifaceted career support for athletes. With strong connections to clubs and stakeholders both domestically and internationally, practicing management that stays close to each athlete.',
+        'profile.location': 'Tokyo',
+        'profile.countries': 'Japan / Laos / Thailand',
+        'career.c1': 'Founded ZELOS Inc. / Appointed CEO',
+        'career.c2': 'Launched International Soccer Tryout Business',
+        'career.c3': 'Soccer Coaching & Development in Laos',
+        'career.c4': 'Building Southeast Asian Club Network',
+        'career.c5': 'Started Player Management & Transfer Negotiation Support',
+        'player.p1': 'Saravan United (Laos)',
+        'player.p2': 'Ezra FC (Laos)',
+        'player.p3': 'Vientiane FC (Laos)',
+        'player.p4': 'Samut Prakan FC (Thailand)',
+        'player.p5': 'Three Star Club (Nepal)',
+        'player.p6': 'Selenge Press FC / Goyo FC / Athletic 220 FC (Mongolia)',
+        'player.p7': 'CMAC FC (Cambodia)',
+        'player.p8': 'HBO Tokyo / Sportiva Tsukuba (Japan)',
+        'player.p9': 'JAPAN Soccer College (Japan)',
+        'player.p10': 'Estudiantes de La Plata (Argentina)',
+        'services.title': 'Services',
+        'services.desc': 'Providing optimal solutions for everyone involved in sports.',
+        'svc.s1.title': 'Player Management',
+        'svc.s1.desc': 'From career planning to contract negotiations and daily support. We provide customized plans tailored to each athlete.',
+        'svc.s2.title': 'International Career Support',
+        'svc.s2.desc': 'Leveraging our network with international clubs to create tryout opportunities and support transfer negotiations.',
+        'svc.s3.title': 'Sponsorship',
+        'svc.s3.desc': 'Matching athletes with sponsor companies to build valuable partnerships for both parties.',
+        'svc.s4.title': 'Event Planning',
+        'svc.s4.desc': 'Planning and operating events such as tryouts and sports camps that contribute to athlete development.',
+        'svc.s5.title': 'Career Education',
+        'svc.s5.desc': 'Providing education programs for second careers and mentoring for young athletes.',
+        'svc.s6.title': 'Consulting',
+        'svc.s6.desc': 'Offering strategic planning and advisory services for clubs and companies in the sports business.',
+        'svc.cta': 'Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
+        'events.title': 'Events',
+        'events.desc': 'Events hosted and organized by ZELOS.',
+        'events.e1.title': 'International Soccer Tryout 2026',
+        'events.e1.desc': 'An international tryout event where scouts from professional overseas clubs directly evaluate players. Click for details.',
+        'events.e1.location': '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Katsushika, Tokyo',
+        'events.e1.age': '<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Ages 18-26',
+        'events.e1.status': 'Open',
+        'events.e2.title': 'Sports Career Seminar',
+        'events.e2.desc': 'A career design seminar featuring current and former professional athletes. Providing opportunities to think about your future as an athlete.',
+        'events.e2.location': '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> TBD',
+        'events.e2.status': 'Coming Soon',
+        'events.note': 'New event information will be updated regularly. Feel free to contact us.',
+        'achv.title': 'Achievements',
+        'achv.a1.title': 'International Soccer Tryout',
+        'achv.a1.desc': 'Organized and hosted tryouts inviting scouts from Southeast Asian professional clubs to directly support domestic players\' overseas challenges.',
+        'achv.a2.title': 'Soccer Development in Laos',
+        'achv.a2.desc': 'Contributing to sports development in Southeast Asia through soccer coaching in Laos. Established relationships with local clubs.',
+        'achv.note': 'Achievements will be updated regularly.',
+        'contact.title': 'Contact',
+        'contact.desc': 'If you have any questions or inquiries, please feel free to contact us.',
+        'contact.heading': 'Get in Touch',
+        'contact.text': 'We handle all sports-related inquiries including player management, event participation, and sponsorship. Feel free to send us a message.',
+        'contact.address': '2-17-3 Nagatacho, Chiyoda-ku, Tokyo',
+        'form.name': 'Name<span class="required">*</span>',
+        'form.namePh': 'John Doe',
+        'form.email': 'Email<span class="required">*</span>',
+        'form.phone': 'Phone', 'form.phonePh': '+81-90-1234-5678',
+        'form.category': 'Inquiry Type',
+        'form.catDefault': 'Please select',
+        'form.cat1': 'Player Management',
+        'form.cat2': 'Events',
+        'form.cat3': 'Sponsorship',
+        'form.cat4': 'Media & Press',
+        'form.cat5': 'Other',
+        'form.message': 'Message<span class="required">*</span>',
+        'form.messagePh': 'Please enter your message',
+        'form.submit': 'Send Message',
+      }
+    };
+
+    // ========================================
+    // Language Switching
+    // ========================================
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      // Text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      // HTML content (elements with <br>, <span>, <svg> etc.)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // Toggle button state
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+      });
+
+      // FormSubmit subject
+      const subjectInput = document.querySelector('input[name="_subject"]');
+      if (subjectInput) {
+        subjectInput.value = lang === 'ja'
+          ? '【ZELOS】WEBサイトからのお問い合わせ'
+          : '【ZELOS】Website Inquiry';
+      }
+
+      localStorage.setItem('zelos-lang', lang);
+    }
+
+    // Init language toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const langToggle = document.getElementById('langToggle');
+      langToggle.addEventListener('click', () => {
+        const current = localStorage.getItem('zelos-lang') || 'ja';
+        setLanguage(current === 'ja' ? 'en' : 'ja');
+      });
+
+      // Apply saved language
+      const saved = localStorage.getItem('zelos-lang');
+      if (saved && saved !== 'ja') {
+        setLanguage(saved);
+      }
+    });
+
     // ========================================
     // Page Loader
     // ========================================
