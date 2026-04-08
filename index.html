@@ -1507,6 +1507,15 @@
   </style>
 </head>
 <body>
+  <script>
+    window.addEventListener('load', function() {
+      var loader = document.getElementById('pageLoader');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function() { loader.style.display = 'none'; }, 600);
+      }
+    });
+  </script>
   <!-- Page Loader -->
   <div class="page-loader" id="pageLoader">
     <div class="loader-logo">ZEL<span class="accent">O</span>S</div>
@@ -1899,6 +1908,10 @@
           <h3 style="font-size: 0.95rem;" data-i18n="achv.a2.title">ラオスでのサッカー普及活動</h3>
           <p data-i18n="achv.a2.desc">ラオス現地でのサッカー指導を通じて、東南アジアのスポーツ発展に貢献。現地クラブとの関係構築を実現。</p>
         </div>
+                        <div class="service-card stagger-item">
+                            <h3>Savannakhet Zelos FC 運営権取得・クラブ経営</h3>
+                            <p>ラオスプレミアリーグ所属Savannakhet FCの運営権60%を取得し、「Savannakhet Zelos FC」として再始動。クラブ経営・ブランディング・選手獲得を主導し、ラオスサッカーの発展に取り組んでいる。</p>
+                        </div>
       </div>
       <p class="events-note fade-in" style="margin-top: 2rem;" data-i18n="achv.note">活動実績は随時更新していきます。</p>
     </div>
